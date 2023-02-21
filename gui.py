@@ -3,7 +3,7 @@ import PySimpleGUI as sg
 sg.theme('darkblue14')
 
 def write_to_file(values,path):
-    data =['Test case name: ',values['-NAME-'],'\n','Account Number: ', values['-ACC_NO-'],'\n','Tech: ', values['-TECH-'],'\n','Job ID: ', values['-ID-'],'\n', 'Device Name: ',values['-DEVICE-'],'\n',"MAC: " ,values['-MAC-'],'\n','Clean: ', str(values['-CLEAN-']),'\n','Previous Account: ',values['-PRV_ACC-'],'\n','Cease compleated: ' ,str(values['-CEASE-'])]
+    data =['Test case name: ',values['-NAME-'],'\n','Account Number: ', values['-ACC_NO-'],'\n','Tech: ', values['-TECH-'],'\n','Job ID: ', values['-ID-'],'\n', 'Device Name: ',values[f'-DEVICE{counter}-'],'\n',"MAC: " ,values[f'-MAC{counter}-'],'\n','Clean: ', str(values[f'-CLEAN{counter}-']),'\n','Previous Account: ',values[f'-PRV_ACC{counter}-'],'\n','Cease compleated: ' ,str(values['-CEASEpip install gooeypie-'])]
     name_file = values['-NAME-']
     print(values['-NAME-'])
     with open(path+'/'+ name_file+'.txt', 'w') as file:
