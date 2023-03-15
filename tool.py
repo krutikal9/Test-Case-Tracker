@@ -44,7 +44,7 @@ l_count =4
 count = 1
 def add_layout(event): 
 
-    global l_count, count,device_name_lbl,device_name,clean,delete_device, previous_acc_lbl,previous_acc_input,cease ,device_name_input,mac_inputgitgit 
+    global l_count, count,device_name_lbl,device_name,clean,delete_device, previous_acc_lbl,previous_acc_input,cease ,device_name_input,mac_input
     n = l_count
     container_lbl = gp.LabelContainer(app,count)
     device_name_lbl = gp.Label(container_lbl,'Device Name')
