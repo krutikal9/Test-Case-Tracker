@@ -7,10 +7,23 @@ path =None
 def reset_val(event):
     print(test_case_name_input.text)
 
-
+def delete_row(row):
+    print("delete row", row)
+    app.get_widget(row, 1).grid_remove()
+    app.refresh()
+    app.update()
+    
+device_name=None
+clean=None
+delete_device=None
+previous_acc_lbl=None
+previous_acc_input=None
+cease=None 
+device_name_input=None
+mac_input=None
 
 def save_val(event):
-
+    global device_name_lbl,device_name,clean,delete_device, previous_acc_lbl,previous_acc_input,cease 
     file_name = test_case_name_input.text
     data =['Test case Name: ',test_case_name_input.text,'\n','Account Number: ',acc_no_input.text,'\n',
             'Tech: ',tech_input.text,'\n','Job ID: ',job_id_input.text,'\n',
@@ -26,13 +39,14 @@ def folder_open(event):
     path =open_folder_window.open()
     path_lbl.text = path
 
+
 l_count =4
+count = 1
+def add_layout(event): 
 
-def add_layout(event):
-
-    global l_count
-
-    container_lbl = gp.LabelContainer(app,'Device Info')
+    global l_count, count,device_name_lbl,device_name,clean,delete_device, previous_acc_lbl,previous_acc_input,cease ,device_name_input,mac_inputgit
+    n = l_count
+    container_lbl = gp.LabelContainer(app,count)
     device_name_lbl = gp.Label(container_lbl,'Device Name')
     device_name =['option 1','oprton 2','option 3','option 4','option 5']
     device_name_input =gp.Dropdown(container_lbl,device_name)
@@ -41,13 +55,15 @@ def add_layout(event):
     mac_input = gp.Input(container_lbl)
 
     clean = gp.Checkbox(container_lbl,'Clean?')
+    delete_device = gp.Button(container_lbl,'-',lambda x: delete_row(n))
+    delete_device.width = 1
 
     previous_acc_lbl = gp.Label(container_lbl,'Previous Account')
     previous_acc_input = gp.Input(container_lbl)
 
     cease = gp.Checkbox(container_lbl,'Cease completed?')
     container_lbl.set_grid(2,6)
-    app.add(container_lbl,l_count,1,row_span=2,column_span=6)
+    app.add(container_lbl,l_count,1,row_span=2,column_span=8)
 
     container_lbl.add(device_name_lbl,1,1,align='right')
     container_lbl.add(device_name_input,1,2,fill='True')
@@ -58,9 +74,10 @@ def add_layout(event):
     container_lbl.add(previous_acc_lbl,2,1,align='right')
     container_lbl.add(previous_acc_input,2,2,fill='True')
     container_lbl.add(cease,2,4,align='right')
+    container_lbl.add(delete_device,2,5,align='right')
     l_count = l_count+2
  
-
+    count = count+1
     app.refresh()
 
 select_button = gp.Button(app,'Select',folder_open)
@@ -82,13 +99,14 @@ tech_input = gp.Input(app)
 job_id_lbl = gp.Label(app,'Job ID')
 job_id_input = gp.Input(app)
 
-
+add_device = gp.Button(app,'+',add_layout)
+add_device.width =1
 
 reset_button = gp.Button(app,'Reset',reset_val)
 add_button = gp.Button(app,'Add device',add_layout)
 save_button = gp.Button(app,'Save',save_val)
 
-app.set_grid(24,6)
+app.set_grid(24,8)
 
 
 # app.set_column_weights()
@@ -104,7 +122,7 @@ app.add(tech_lbl,3,3,align='right')
 app.add(tech_input,3,4,fill='True')
 app.add(job_id_lbl,3,5,align='right')
 app.add(job_id_input,3,6,fill='True')
-
+app.add(add_device,3,7, allign='right')
 
 
 
